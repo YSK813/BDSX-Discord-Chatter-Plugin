@@ -1,6 +1,8 @@
 # Original repository
 [BDSX-Discord-Chatter-Plugin](https://github.com/TheShadowEevee/BDSX-Discord-Chatter-Plugin)
 
+This repository is a fork of the author above.
+
 
 # DiscordChatter For BDS eXtended
 
