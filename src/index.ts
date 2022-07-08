@@ -83,13 +83,19 @@ if (!fs.existsSync("./configs/Discord-Chatter/discordactivity.json") ) {
 }
 
 // BDSX Imports
-import a from `bdsx`;
+const { MinecraftPacketIds } = require('bdsx');
+const { events } = require(`bdsx/event`);
+const { CxxString } = require("bdsx/nativetype");
+const { NetworkIdentifier } = require("bdsx/bds/networkidentifier");
+const { TextPacket } = require('bdsx/bds/packets');
+const { serverInstance } = require('bdsx/bds/server');
+/*
 import { MinecraftPacketIds } from 'bdsx';
 import { events } from "bdsx/event";
 import { CxxString } from "bdsx/nativetype";
 import { NetworkIdentifier } from "bdsx/bds/networkidentifier";
 import { TextPacket } from 'bdsx/bds/packets';
-import { serverInstance } from 'bdsx/bds/server';
+import { serverInstance } from 'bdsx/bds/server';*/
 
 
 // Discord Bot Requirements
@@ -142,7 +148,7 @@ bot.on('message', (msg: { channel: { id: string; }; author: { bot: string | bool
 // These are BDS defined events that should be tracked or a message should be sent on.
 
 // Player List
-const connectionList = new Map<NetworkIdentifier, string>();
+const connectionList = new Map<typeof NetworkIdentifier, string>();
 
 // BDS Initialized?
 var serverAlive = false;
@@ -154,7 +160,7 @@ events.serverOpen.on(() => serverAlive = true);
 events.serverStop.on(() => serverAlive = false);
 
 // Player Join
-events.packetAfter(MinecraftPacketIds.Login).on((ptr, networkIdentifier, packetId) => {
+events.packetAfter(MinecraftPacketIds.Login).on((ptr: { connreq: any; }, networkIdentifier: any, packetId: any) => {
 
     const connreq = ptr.connreq;
     const cert = connreq.cert;
@@ -169,18 +175,18 @@ events.packetAfter(MinecraftPacketIds.Login).on((ptr, networkIdentifier, packetI
 });
 
 // Player Leave
-events.networkDisconnected.on(networkIdentifier => {
+events.networkDisconnected.on((networkIdentifier: any) => {
     if ( GetConfig("EnableJoinLeaveMessages") == true ) {
         const id = connectionList.get(networkIdentifier);
         connectionList.delete(networkIdentifier);
 
         // Player Leave (Extract Username)
-        SendToDiscordEvent("has left the server!", id);
+        SendToDiscordEvent("has left the server!", id as string);
     }
 });
 
 // Chat Message Sent
-events.packetAfter(MinecraftPacketIds.Text).on(ev => {
+events.packetAfter(MinecraftPacketIds.Text).on((ev: { message: string; name: string; }) => {
     SendToDiscord(ev.message, ev.name);
 });
 
