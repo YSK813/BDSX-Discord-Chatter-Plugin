@@ -83,12 +83,14 @@ if (!fs.existsSync("./configs/Discord-Chatter/discordactivity.json") ) {
 }
 
 // BDSX Imports
-import { MinecraftPacketIds } from 'bdsx';
-import { events } from "bdsx/event";
-import { CxxString } from "bdsx/nativetype";
-import { NetworkIdentifier } from "bdsx/bds/networkidentifier";
-import { TextPacket } from 'bdsx/bds/packets';
-import { serverInstance } from 'bdsx/bds/server';
+// import package
+//import a from `bdsx`;
+//import { MinecraftPacketIds } from 'bdsx';
+//import { events } from "bdsx/event";
+//import { CxxString } from "bdsx/nativetype";
+//import { NetworkIdentifier } from "bdsx/bds/networkidentifier";
+//import { TextPacket } from 'bdsx/bds/packets';
+//import { serverInstance } from 'bdsx/bds/server';
 
 
 // Discord Bot Requirements
