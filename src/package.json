@@ -1,0 +1,35 @@
+{
+  "name": "@bdsx/discordchatter",
+  "version": "1.1.1",
+  "description": "Integrate Discord with BDSX! Send messages to and from your servers!",
+  "main": "index.js",
+  "keywords": [
+    "Discord",
+    "BDSX",
+    "Server Utility"
+  ],
+  "homepage": "https://github.com/TheShadowEevee/BDSX-Discord-Chatter-Plugin#readme",
+  "author": "TheShadowEevee",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheShadowEevee/BDSX-Discord-Chatter-Plugin.git"
+  },
+  "license": "ISC",
+  "bdsxPlugin": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prepare": "tsc || exit 0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.20.48",
+    "bdsx": "file:../bdsx",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "discord.js": "^11.6.4 <12.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/TheShadowEevee/BDSX-Discord-Chatter-Plugin/issues"
+  }
+}
